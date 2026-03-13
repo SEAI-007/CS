@@ -23,11 +23,11 @@ def menuSystem():
         elif user_input == 5:
             input_5 = input("Are you sure you want to exit?")
             if input_5.lower() == "yes":
-                pass
+                return
             elif input_5.lower() == "no":
-                menuSystem()
+                print("Going back to the menu")
             else:
-                menuSystem()
+                print("Going back to the menu")
         else:
             print("Please input a correct number between 1 and 5")
             menuSystem()
@@ -42,9 +42,7 @@ def addStudent():
             print("Please enter an age between 15 and 20")
     while True:
         student_courses = input(f"Please input the courses to be added: {courses} ")
-        student_courses = student_courses.strip()
-        student_courses = student_courses.split(",")
-        student_courses = set(student_courses)
+        student_courses = set(student_courses.strip().split(","))
         print(student_courses)
         if student_courses.issubset(courses):
             break
@@ -59,10 +57,10 @@ def viewStudents():
         for student in all_students:
             print(student)
     else:
-        tmp = input("No students added yet. Do you wish to add one now? (y/n)")
-        if tmp == "y":
+        choice = input("No students added yet. Do you wish to add one now? (y/n)")
+        if choice == "y":
             addStudent()
-        elif tmp == "n":
+        elif choice == "n":
             x = input("Press 'enter' to go back to menu")
             if x == "":
                 menuSystem()
@@ -74,10 +72,11 @@ def viewStudents():
             viewStudents()
 
 def searchStudent():
-    name = input("Enter the full name of the student: ").lower()
-    for i in all_students:
-        if name == i.values():
-            print(i)
+    name = input("Enter the full name of the student: ").title()
+    for student in all_students:
+        if name == student["Name:"]:
+            print(student)
+            return
         else:
             print("Not found")
     user_input = input("Press enter to go back to the menu: ")
@@ -94,10 +93,10 @@ def showStatistics():
     counter_music = 0
     counter_politics = 0
     for student in all_students:
-            counter_math += student.values().count("math")
-            counter_english += student.values().count("english")
-            counter_music += student.values().count("music")
-            counter_politics += student.values().count("politics")
+            counter_math += student["Courses: "].count("math")
+            counter_english += student["Courses: "].count("english")
+            counter_music += student["Courses: "].count("music")
+            counter_politics += student["Courses: "].count("politics")
     all_counter = [(counter_math,"math"),(counter_english,"english"),(counter_music,"music"),(counter_politics,"politics")]
     all_counter.sort()
     print(f"lowest attended class is: {all_counter[0][1]}")

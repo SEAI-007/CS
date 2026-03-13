@@ -62,10 +62,10 @@ def add_student():
 
 def view_all_students():
     print("\n--------All Students---------")
-    if not students:
+    if not students: # Checking if there are any students in the list of students, if not we show a message to the user and ask them if they want to add a student now
         print("No students added yet")
         answer = input("Do you want to add a student now? (yes/no): ").strip().lower() # Asking the user if they want to add a student now, and formatting the input
-        if answer == "yes":
+        if answer == "yes": # If the user wants to add a student now, we call the add_student() function to allow them to add a student
             add_student()
         else:
             input("Press Enter to return to the main menu.")
@@ -74,12 +74,14 @@ def view_all_students():
         # enumerate() is a built-in function in Python that adds a counter to an iterable and returns it as an enumerate object.
         # In this case, we are using enumerate() to get the index of each student in the list of students, starting from 1.
         # For example, if we have 3 students in the list of students, the enumerate() function will return (1, student1), (2, student2), (3, student3).
-        print(f"\nStudent {i}:")
-        print(f"  Name: {s['name']}")
-        print(f"  Age: {s['age']}")
-        print(f"  Courses: {', '.join(s['courses'])}")
+        print(f"\nStudent {i}:") # Showing the index of the student in the list of students, we use f-string to format the output
+        print(f"  Name: {s['name']}") # Showing the name of the student, we access the name of the student from the student dictionary using s['name'] and format it using f-string
+        print(f"  Age: {s['age']}") # Showing the age of the student, we access the age of the student from the student dictionary using s['age'] and format it using f-string
+        print(f"  Courses: {', '.join(s['courses'])}") # Showing the courses of the student, we access the courses of the student from the student dictionary using s['courses'],
+        # which is a tuple of courses, and we use join() to join the courses into a single string separated by commas, and format it using f-string
 
     input("\nPress Enter to return to the main menu.")
+    return
 
 def search_student():
     print("\n--------Search for a Student---------")
@@ -96,7 +98,7 @@ def search_student():
     if not found: # If the student is not found, we show a message to the user
         print(f"Student {search_name} not found.")
     input("\nPress Enter to return to the main menu.")
-
+    return
 def show_statistics():
     print("\n--------Statistics---------")
     total_students = len(students) # Getting the total number of students by using the len() function on the list of students
@@ -133,6 +135,7 @@ def show_statistics():
     else: # If there are no empty courses, we show a message to the user
         print("\nNo empty courses.")
     input("\nPress Enter to return to the main menu.")
+    return
 
 while True: # We want to keep showing the main menu until the user chooses to exit
     print("\n--------Student Information Manager---------")

@@ -173,7 +173,7 @@ def show_statistics(library, authors, genres):
     unique_genres = len(genres)
     print(f"Total books: {total_books}")
     print(f"Unique genres: {unique_genres}")
-    print(f"Unique authors ({len(authors)}):")
+    print(f"Unique authors ({unique_authors}):")
     for author in sorted(authors):
         print(f"  - {author}")
 

@@ -139,6 +139,14 @@ Return True if yes, otherwise False."""
 
 print("Welcome to the Simple Bank Account Manager!")
 
+# BankAccount (class)          ← Any BankAccount object is created from this class
+#     ↓
+# accounts_list (list)         ← All BankAccount objects are stored here
+#     ↓
+# Functions                    ← Manage the list and interact with BankAccount objects
+#     ↓
+# while True (ana döngü)       ← Menu system to call functions based on user input
+
 # ── Global Variables ───────────────────────────────────────────────
 accounts_list = []
 account_numbers = set()

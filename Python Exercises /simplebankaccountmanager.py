@@ -59,13 +59,10 @@ def create_account(accounts_list):
         account_number_unique = False
         while account_number_unique == False:
             for account in accounts_list:
-                if account.account_number != account_number:
-                    pass
-                else:
+                if account.account_number == account_number:
                     print("Account number is already taken, try to create a new account again with a different number")
                     return
             account_number_unique = True
-
         initial_balance = 0
         user_input = ""
         while user_input != "quit":
@@ -86,7 +83,7 @@ def deposit_to_account(accounts_list):
     for account in accounts_list:
         if account.account_number == account_number:
             try:
-                account.balance += int(input("How much do you want to deposit? "))
+                account.balance += float(input("How much do you want to deposit? "))
             except:
                 print("A valid number is required")
         else:
@@ -102,7 +99,7 @@ def withdraw_from_account(accounts_list):
     for account in accounts_list:
         if account.account_number == account_number:
             try:
-                account.balance -= int(input("How much do you want to withdraw? "))
+                account.balance -= float(input("How much do you want to withdraw? "))
             except:
                 print("A valid number is required")
         else:
@@ -110,7 +107,7 @@ def withdraw_from_account(accounts_list):
 
 def view_all_accounts(accounts_list):
     for account in accounts_list:
-        print(account)
+        print(account.display())
 
 def search_account(accounts_list, query):
     for account in accounts_list:
